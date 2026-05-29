@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SBTi 趣味人格测试</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+        body {
+            background: #f7f9fc;
+            padding: 30px 20px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .title {
+            text-align: center;
+            font-size: 26px;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 40px;
+        }
+        .question {
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .q-text {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 12px;
+            color: #2d3436;
+        }
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .option {
+            padding: 10px 14px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .option:hover {
+            background: #f1f5ff;
+            border-color: #3498db;
+        }
+        .option.selected {
+            background: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+        .btn-box {
+            text-align: center;
+            margin: 40px 0;
+        }
+        #submit {
+            padding: 14px 40px;
+            background: #2ecc71;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        #submit:disabled {
+            background: #bdc3c7;
+            cursor: not-allowed;
+        }
+        .result {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            display: none;
+            margin-top: 30px;
+        }
+        .result h2 {
+            color: #e74c3c;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .result-content {
+            line-height: 1.7;
+            font-size: 15px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="title">SBTi 趣味人格测试</div>
+    <div class="subtitle">Silly Big Personality Test · 凭第一直觉选择</div>
+
+    <!-- 10道题 -->
+    <div class="question" data-q="1">
+        <div class="q-text">1. 周末你更想？</div>
+        <div class="options">
+            <div class="option" data-ans="A">出门热闹玩</div>
+            <div class="option" data-ans="B">宅家安静躺</div>
+            <div class="option" data-ans="C">把时间安排满</div>
+        </div>
+    </div>
+
+    <div class="question" data-q="2">
+        <div class="q-text">2. 别人对你第一印象是？</div>
+        <div class="options">
+            <div class="option" data-ans="A">开朗好相处</div>
+            <div class="option" data-ans="B">安静慢热</div>
+            <div class="option" data-ans="C">独立有主见</div>
+        </div>
+    </div>
+
+    <div class="question" data-q="3">
+        <div class="q-text">3. 遇到麻烦你会？</div>
+        <div class="options">
+            <div class="option" data-ans="A">先找人吐槽</div>
+            <div class="option" data-ans="B">自己冷静解决</div>
+            <div class="option" data-ans="C">立刻行动搞定</div>
+        </div>
+    </div>
+
+    <div class="question" data-q="4">
+        <div class="q-text">4. 做选择时你通常？</div>
+        <div class="options">
+            <div class="option" data-ans="A">纠结问别人</div>
+            <div class="option" data-ans="B">随心尝试</div>
+            <div class="option" data-ans="C">快速果断</div>
+        </div>
+    </div>
+
+    <div class="question" data-q="5">
+        <div class="q-text">5. 休闲更喜欢？</div>
+        <div class="options">
+            <div class="option" data-ans="A">搞笑综艺</div>
+            <div class="option" data-ans="B">治愈安静内容</div>
+            <div class="option" data-ans="C">刺激竞技</div>
+        </div>
+    </div>
+
+    <div class="question" data-q="6">
+        <div class="q-text">6. 和朋友吵架你会？</div>
+        <div class="options">
+            <div class="option" data-ans="A">主动缓和</div>
+            <div class="option" data-ans="B">顺其自然</div>
+            <div class="option" data-ans="C">理性沟通</div>
+        </div>
+    </div>
+
+    <div class="question" data-q="7">
+        <div class="q-text">7. 做事节奏？</div>
+        <div class="options">
+            <div class="option" data-ans="A">随性散漫</div>
+            <div class="option" data-ans="B">张弛有度</div>
+            <div class="option" data-ans="C">规律自律</div>
+        </div>
+    </div>
+
+    <div class="question" data-q="8">
+        <div class="q-text">8. 被夸奖时你会？</div>
+        <div class="options">
+            <div class="option" data-ans="A">大方开玩笑</div>
+            <div class="option" data-ans="B">害羞道谢</div>
+            <div class="option" data-ans="C">淡定接受</div>
+        </div>
+    </div>
+
+    <div class="question" data-q="9">
+        <div class="q-text">9. 旅行更喜欢？</div>
+        <div class="options">
+            <div class="option" data-ans="A">网红打卡</div>
+            <div class="option" data-ans="B">小众安静</div>
+            <div class="option" data-ans="C">户外探险</div>
+        </div>
+    </div>
+
+    <div class="question" data-q="10">
+        <div class="q-text">10. 面对新挑战？</div>
+        <div class="options">
+            <div class="option" data-ans="A">需要鼓励</div>
+            <div class="option" data-ans="B">平常心</div>
+            <div class="option" data-ans="C">跃跃欲试</div>
+        </div>
+    </div>
+
+    <div class="btn-box">
+        <button id="submit" disabled>生成我的人格结果</button>
+    </div>
+
+    <div class="result" id="result">
+        <h2>你的 SBTi 人格结果</h2>
+        <div class="result-content" id="resultText"></div>
+    </div>
+
+<script>
+    let answers = {};
+    const total = 10;
+    const submitBtn = document.getElementById('submit');
+
+    // 点击选项
+    document.querySelectorAll('.option').forEach(opt => {
+        opt.addEventListener('click', () => {
+            const q = opt.closest('.question').dataset.q;
+            const siblings = opt.parentElement.querySelectorAll('.option');
+            siblings.forEach(s => s.classList.remove('selected'));
+            opt.classList.add('selected');
+            answers[q] = opt.dataset.ans;
+
+            // 答满启用按钮
+            if (Object.keys(answers).length === total) {
+                submitBtn.disabled = false;
+            }
+        });
+    });
+
+    // 提交生成结果
+    submitBtn.addEventListener('click', () => {
+        const countA = Object.values(answers).filter(a => a === 'A').length;
+        const countB = Object.values(answers).filter(a => a === 'B').length;
+        const countC = Object.values(answers).filter(a => a === 'C').length;
+
+        let type, desc;
+
+        if (countA >= countB && countA >= countC) {
+            type = "快乐小太阳型 🌞";
+            desc = "你热情开朗、人缘超好，喜欢热闹，天生自带感染力，是朋友中的气氛担当！你真诚善良，很会照顾别人情绪，生活里的快乐源泉。";
+        } else if (countB >= countA && countB >= countC) {
+            type = "温柔治愈家型 🫧";
+            desc = "你安静温柔、内心细腻，喜欢舒适自在的小世界，不喜欢争抢。你共情力超强，很会自我调节，给人安心、舒服、治愈的感觉。";
+        } else {
+            type = "清醒实力派型 🚀";
+            desc = "你独立果断、目标清晰，做事靠谱有规划，遇事冷静不慌。你有主见、有执行力，是让人信赖的强者类型，低调又厉害。";
+        }
+
+        document.getElementById('resultText').innerHTML = `
+            <strong>人格类型：${type}</strong><br><br>
+            ${desc}<br><br>
+            ✨ 你的选择统计：A选项 ${countA} 个，B选项 ${countB} 个，C选项 ${countC} 个
+        `;
+        document.getElementById('result').style.display = 'block';
+    });
+</script>
+</body>
+</html>
